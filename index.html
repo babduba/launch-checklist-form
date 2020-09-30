@@ -7,24 +7,35 @@
     </head>
     <body>
         <h1>Launch Checklist Form</h1>
+        <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
+            <label>Select Mission Destination:
+                <select id="missionDestinationSelector" onchange="missionDestinationSelector_onChange(this.value)">
+                    <option value="">--Please choose an option--</option>
+                </select>
+            </label>
+        </div>
         <div id="missionTarget">
             <!-- Fetch some planetary data -->
         </div> 
         <div id="launchForm">
-            <form>
+            <form id="form" action="" method="GET">
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Pilot Name <input type="text" name="pilotName" id="pilotName"/></label>
+                    <label for="pilotName">Pilot Name</label>
+                    <input type="text" name="pilotName" id="pilotName" pattern="[a-zA-Z]+" title="Pilot Name Is Required - String Characters Only" required/>
                 </div>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Co-pilot Name <input type="text" name="copilotName"/></label>
+                    <label for="copilotName">Co-pilot Name</label>
+                    <input type="text" name="copilotName" id="coPilotName" pattern="[a-zA-Z]+" title="Co-Pilot Name Is Required - String Characters Only" required/>
                 </div>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Fuel Level (L) <input type="text" name="fuelLevel"/></label> 
+                    <label for="fuelLevel"> Fuel Level (L)</label>
+                    <input type="number" name="fuelLevel" id="fuelLevel" pattern="[^0-9]+" title="Fuel Level Is Required - Numbers Only" min="10000" required/> 
                 </div>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Cargo Mass (kg) <input type="text" name="cargoMass"/></label>
+                    <label for="cargoMass">Cargo Mass (kg)</label>
+                    <input type="number" name="cargoMass" id="cargoMass" pattern="[^0-9]+" title="Cargo Mass Is Required - Numbers Only" max="10000" required/>
                 </div>
-                <button id="formSubmit">Submit</button>
+                <button id="formSubmit" onclick="validateForm()">Submit</button>
             </form>
         </div>
         <div id="launchStatusCheck">
